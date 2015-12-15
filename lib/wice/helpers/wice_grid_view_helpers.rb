@@ -246,7 +246,7 @@ module Wice
       if grid.saved_query
         g_title = "Applied filter: '#{grid.saved_query.name}'"
         g_title = "#{g_title} and '#{ex_filter}'" unless ex_filter.empty?
-      else if !ex_filter.empty?
+      elsif !ex_filter.empty?
         g_title = "Applied filter: '#{ex_filter}'"
       end
       
