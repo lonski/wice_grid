@@ -250,7 +250,7 @@ module Wice
       elsif !ex_filter.empty?
         g_title = "Applied filter: '#{ex_filter} '"
       end
-      g_title += options[:clear_filters_link] unless g_title.empty?
+      g_title += " " + options[:clear_filters_link] unless g_title.empty?
       
       grid.output_buffer << "<h3>#{g_title}</h3>" unless g_title.empty?
       
