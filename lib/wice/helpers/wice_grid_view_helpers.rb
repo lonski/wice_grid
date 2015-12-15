@@ -239,7 +239,18 @@ module Wice
       grid.output_buffer.force_encoding('UTF-8') if grid.output_buffer.respond_to?(:force_encoding)
 
       grid.output_buffer << %(<div class="wice-grid-container table-responsive" data-grid-name="#{grid.name}" id="#{grid.name}"><div id="#{grid.name}_title">)
-      grid.output_buffer << content_tag(:h3, "Applied filter: '#{grid.saved_query.name}'") if grid.saved_query
+      
+      g_title = ""
+      ex_filter = options[:extra_filter] 
+      if grid.saved_query
+        g_title = "Applied filter: '#{grid.saved_query.name}'"
+        g_title = "#{g_title} and '#{ex_filter}'" unless ex_filter.empty?
+      else if !ex_filter.empty?
+        g_title = "Applied filter: '#{ex_filter}'"
+      end
+      
+      grid.output_buffer << content_tag(:h3, g_title) unless g_title.empty?
+      
       grid.output_buffer << "</div><table #{public_tag_options(table_html_attrs, true)}>"
       grid.output_buffer << "<caption>#{rendering.kaption}</caption>" if rendering.kaption
       grid.output_buffer << '<thead>'
