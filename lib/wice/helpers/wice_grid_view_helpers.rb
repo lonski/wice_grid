@@ -98,7 +98,8 @@ module Wice
         sorting_dependant_row_cycling:  false,
         html:                           {},
         upper_pagination_panel:         Defaults::SHOW_UPPER_PAGINATION_PANEL,
-        extra_filter:                   ""
+        extra_filter:                   "",
+        clear_filters_link:             ""
       }
 
       opts.assert_valid_keys(options.keys)
@@ -244,11 +245,12 @@ module Wice
       g_title = ""
       ex_filter = options[:extra_filter] 
       if grid.saved_query
-        g_title = "Applied filter: '#{grid.saved_query.name}'"
-        g_title = "#{g_title} and '#{ex_filter}'" unless ex_filter.empty?
+        g_title = "Applied filter: '#{grid.saved_query.name}' "
+        g_title = "#{g_title}and '#{ex_filter}' " unless ex_filter.empty?
       elsif !ex_filter.empty?
-        g_title = "Applied filter: '#{ex_filter}'"
+        g_title = "Applied filter: '#{ex_filter} '"
       end
+      g_title += options[:clear_filters_link] unless g_title.empty?
       
       grid.output_buffer << content_tag(:h3, g_title) unless g_title.empty?
       
