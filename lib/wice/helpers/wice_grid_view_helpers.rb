@@ -97,7 +97,8 @@ module Wice
         show_filters:                   Defaults::SHOW_FILTER,
         sorting_dependant_row_cycling:  false,
         html:                           {},
-        upper_pagination_panel:         Defaults::SHOW_UPPER_PAGINATION_PANEL
+        upper_pagination_panel:         Defaults::SHOW_UPPER_PAGINATION_PANEL,
+        extra_filter:                   ""
       }
 
       opts.assert_valid_keys(options.keys)
