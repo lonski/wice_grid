@@ -252,7 +252,7 @@ module Wice
       end
       g_title += options[:clear_filters_link] unless g_title.empty?
       
-      grid.output_buffer << content_tag(:h3, g_title) unless g_title.empty?
+      grid.output_buffer << "<h3>#{g_title}</h3>" unless g_title.empty?
       
       grid.output_buffer << "</div><table #{public_tag_options(table_html_attrs, true)}>"
       grid.output_buffer << "<caption>#{rendering.kaption}</caption>" if rendering.kaption
