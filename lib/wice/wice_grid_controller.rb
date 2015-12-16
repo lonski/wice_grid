@@ -117,7 +117,7 @@ module Wice
         lines = f.readlines
         f.close
 
-        lines = ["sep=#{gridcsv_field_separator}\n"] + lines
+        lines = ["sep=#{grid.csv_field_separator}\n"] + lines
 
         output = File.new(temp_filename, "w")
         lines.each { |line| output.write line }
