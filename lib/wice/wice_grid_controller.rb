@@ -112,6 +112,17 @@ module Wice
         template_name ||= grid.name + '_grid'
         temp_filename = render_to_string(partial: template_name)
         temp_filename = temp_filename.strip
+        
+        f = File.open(temp_filename, "r+")
+        lines = f.readlines
+        f.close
+
+        lines = ["sep=#{gridcsv_field_separator}\n"] + lines
+
+        output = File.new(temp_filename, "w")
+        lines.each { |line| output.write line }
+        output.close
+        
         filename = (grid.csv_file_name || grid.name) + '.csv'
         grid.csv_tempfile.close
         send_file_rails2 temp_filename, filename: filename, type: "text/csv; charset=#{get_output_encoding grid.csv_encoding}"
