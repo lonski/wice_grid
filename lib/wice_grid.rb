@@ -28,7 +28,7 @@ ActionController::Base.send(:helper_method, :wice_grid_custom_filter_params)
 
 module Wice
 
-  def self.on_action_view_load #:nodoc:
+  def self.on_action_view_load #:nodoc:c
     ::ActionView::Base.class_eval { include Wice::GridViewHelper }
     [ActionView::Helpers::AssetTagHelper,
      ActionView::Helpers::TagHelper,
@@ -175,8 +175,8 @@ module Wice
       @ar_options_formed = false
     end
 
-  	def conditions
-  		@status[:conditions]
+  	def grid_options
+  	  @ar_options
   	end
 	
     # A block executed from within the plugin to process records of the current page.
