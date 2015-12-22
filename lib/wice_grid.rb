@@ -175,6 +175,10 @@ module Wice
       @ar_options_formed = false
     end
 
+  	def conditions
+  		@status[:conditions]
+  	end
+	
     # A block executed from within the plugin to process records of the current page.
     # The argument to the callback is the array of the records. See the README for more details.
     def with_paginated_resultset(&callback)
